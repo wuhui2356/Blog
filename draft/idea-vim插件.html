@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="说实话，Intellij IDEA自带的Vim插件真心不错…编程最前线 Today  点击蓝字之后，我们就是好朋友啦  来源：http:&#x2F;&#x2F;hsujee.com 对 Vim 十分熟悉的同学，掌握这个插件会很容易的，在他们的手中才会发挥出该款神器应有的价值。  当然基本的hjkl移动光标和几种常见模式等等基本概念就略过不提了。为了确保只包含常用操作，这里提到的技巧都没有从现成文档里抄，而是凭记忆列出">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Silverlaw&#39;s Blog">
+<meta property="og:url" content="https://blog.wuhui2356.top/draft/idea-vim%E6%8F%92%E4%BB%B6.html">
+<meta property="og:site_name" content="Silverlaw&#39;s Blog">
+<meta property="og:description" content="说实话，Intellij IDEA自带的Vim插件真心不错…编程最前线 Today  点击蓝字之后，我们就是好朋友啦  来源：http:&#x2F;&#x2F;hsujee.com 对 Vim 十分熟悉的同学，掌握这个插件会很容易的，在他们的手中才会发挥出该款神器应有的价值。  当然基本的hjkl移动光标和几种常见模式等等基本概念就略过不提了。为了确保只包含常用操作，这里提到的技巧都没有从现成文档里抄，而是凭记忆列出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.wuhui2356.top/images/vim/640.gif">
+<meta property="og:image" content="https://blog.wuhui2356.top/images/vim/640.gif">
+<meta property="og:image" content="https://blog.wuhui2356.top/images/vim/640-1583289262161.png">
+<meta property="article:published_time" content="2021-12-09T11:49:45.241Z">
+<meta property="article:modified_time" content="2021-12-09T11:49:45.241Z">
+<meta property="article:author" content="silverlaw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.wuhui2356.top/images/vim/640.gif">
+  <link rel="alternate" href="/atom.xml" title="Silverlaw's Blog" type="application/atom+xml">
+  <link rel="canonical" href="https://blog.wuhui2356.top/draft/idea-vim%E6%8F%92%E4%BB%B6">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: false,
+    isPage: true,
+    isArchive: false
+  };
+</script>
+
+  <title> | Silverlaw's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-right">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Silverlaw's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section">首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section">标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section">分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section">归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section">站点地图</a>
+
+  </li>
+  </ul>
+
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h2 class="post-title" itemprop="name headline">
+
+</h2>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          <h2 id="说实话，Intellij-IDEA自带的Vim插件真心不错…"><a href="#说实话，Intellij-IDEA自带的Vim插件真心不错…" class="headerlink" title="说实话，Intellij IDEA自带的Vim插件真心不错…"></a>说实话，Intellij IDEA自带的Vim插件真心不错…</h2><p><a href="javascript:void(0);">编程最前线</a> <em>Today</em></p>
+<p><img src="../images/vim/640.gif" alt="img"></p>
+<p>点击蓝字之后，我们就是好朋友啦</p>
+<p><img src="../images/vim/640.gif" alt="img"></p>
+<p>来源：<a target="_blank" rel="noopener" href="http://hsujee.com/">http://hsujee.com</a></p>
+<p>对 Vim 十分熟悉的同学，掌握这个插件会很容易的，在他们的手中才会发挥出该款神器应有的价值。</p>
+<p><img src="../images/vim/640-1583289262161.png" alt="img"></p>
+<p>当然基本的hjkl移动光标和几种常见模式等等基本概念就略过不提了。为了确保只包含常用操作，这里提到的技巧都没有从现成文档里抄，而是凭记忆列出。</p>
+<p><strong>1、切换Vim模拟器状态</strong></p>
+<p>这个插件允许设置一个快捷键一键开启或关闭，在切换模式时会同时自动切换keymap，十分方便。默认键位是Ctrl+Alt+V，但这个键位覆盖了很常用的“抽取局部变量”功能，建议重设，在setting-&gt;keymap中查找VIM Emulator即可。</p>
+<p>由于开启和关闭状态分别使用两套keymap，因此两套都需要设定。可以把两套keymap下的都设为一样的键，也就是用同一个键切换。但个人建议设为不同的键，这样能清楚知道当前处于那种模式中。并且，如果在开启Vim的插入模式下关闭Vim模拟器，下次进入时仍然是插入模式，比较混乱（因为你关闭模拟器就是为了使用默认keymap输入大段代码，重新开启Vim模拟器就是为了使用普通模式下的命令）。</p>
+<p>因此建议把Vim keymap中的Exit Insert Mode设为与另一个keymap的Vim Emulator相同的键（也就是进入Vim模拟器的快捷键）。</p>
+<p>例如，我使用的设定是：</p>
+<p>Default keymap -&gt; Vim Emulator : Ctrl+;   (用Ctrl+分号开启Vim模拟器）</p>
+<p>Vim keymap -&gt; Vim Emulator : Ctrl+,  (用Ctrl+逗号关闭Vim模拟器）</p>
+<p>Vim keymap -&gt; Vim Emulator : Ctrl+;  (用Ctrl+分号退出插入模式，进入普通模式）</p>
+<p>这样，在任何时候只要连按两下ctrl+分号，就能保证必定在Vim模拟器的普通模式中。</p>
+<p><strong>2、ScrollOff 参数</strong></p>
+<p>启动Intellij后在Vim模拟器下输入命令 :</p>
+<ul>
+<li></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set so=5</span><br></pre></td></tr></table></figure>
+
+<p>可以令屏幕滚动时在光标上下方保留5行预览代码（也就是光标会在第5行触发向上滚动，或者在倒数第5行触发向下滚动）。</p>
+<p>在代码窗口比较狭小时（例如单步跟踪调试时）非常方便。可惜仅在Vim模拟器开启时有效。</p>
+<p><strong>3、行号定位</strong></p>
+<p>普通模式下输入 行号G 或 :行号&lt;回车&gt; 都能快速定位到某一行。</p>
+<p>区别在于前者在输入行号时屏幕上没有任何提示，后者则在Vim命令输入框中可以看到输入过程。</p>
+<p>题外话：Sublime Text 2也是用 :行号 来快速定位到某行，应该是沿用了Vim的习惯。</p>
+<p><strong>4、进入修改</strong></p>
+<p>进入插入模式的方式有很多，直接选用合适的方式进入插入模式比进入后再用箭头键移动光标要好。常用的有：</p>
+<p>o - 在当前行下方插入新行并自动缩进</p>
+<p>O - 在当前行上方插入新行并自动缩进 （普通模式下的大写字母命令用 shift+字母键 输入，下同）</p>
+<p>i - 在当前字符左方开始插入字符</p>
+<p>a - 在当前字符右方开始插入字符</p>
+<p>I - 光标移动到行首并进入插入模式</p>
+<p>A - 光标移动到行尾并进入插入模式</p>
+<p>s - 删除光标所在字符并进入插入模式</p>
+<p>S - 删除光标所在行并进入插入模式</p>
+<p>c&lt;范围&gt; - 删除光标所在位置周围某个范围的文本并进入插入模式。关于范围请看第5点，常用的组合有：caw - 删除一个单词包括它后面的空格并开始插入；ciw - 删除一个单词并开始插入；ci” - 删除一个字符串内部文本并开始插入；c$ - 从光标位置删除到行尾并开始插入；ct字符 - 从光标位置删除本行某个字符之前（保留该字符）并开始插入。等等。</p>
+<p>C - 删除光标位置到行尾的内容并进入插入模式 (相当于c$)</p>
+<p>r - 修改光标所在字符，然后返回普通模式</p>
+<p>R - 进入覆盖模式</p>
+<p><strong>5、范围操作</strong></p>
+<p>某些普通模式的动作命令后面可以追加一些表示范围的指令，表示该动作将作用在整个范围上。这类命令常用的有：</p>
+<p>d&lt;范围&gt; - 删除一定范围内的文本</p>
+<p>c&lt;范围&gt; - 删除一定范围内的文本并进入插入模式</p>
+<p>y&lt;范围&gt; - 将范围内的文本放入0号和”号注册栏</p>
+<p>v&lt;范围&gt; - 选择范围内的文本</p>
+<p>=&lt;范围&gt; - 自动缩进范围内的文本</p>
+<p>gU&lt;范围&gt; - 将范围内的字符转换为大写</p>
+<p>gu&lt;范围&gt; - 将范围内的字符转换为小写</p>
+<p>&gt;&lt;范围&gt; - 将范围中的内容缩进一格</p>
+<p>&lt;&lt;范围&gt; - 将范围中的内容取消缩进一格</p>
+<p>常用的范围指令有：</p>
+<p>空格 - 光标所在位置字符。（例如 gU空格 - 将光标位置字符转为大写）</p>
+<p>重复某些动作命令 - 光标所在行。（例如dd删除一行，yy复制一行，cc删除一行文本并开始插入，&gt;&gt; 当前行缩进一格，==自动缩进当前行）</p>
+<p>$ - 从光标位置到行尾</p>
+<p>^ - 从光标位置到行首，不包含缩进空白</p>
+<p>0 - 从光标位置到行首，包含缩进空白</p>
+<p>gg - 从光标位置到文件开头</p>
+<p>G - 从光标位置到文件结尾</p>
+<p>% - 从光标位置到另一边匹配的括号</p>
+<p>f&lt;字符&gt; - 从光标位置到光标右边某个字符首次出现的位置，包括该字符</p>
+<p>F&lt;字符&gt; - 从光标位置到光标左边某个字符首次出现的位置，包括该字符</p>
+<p>t&lt;字符&gt; - 从光标位置到光标右边某个字符首次出现的位置，包括该字符</p>
+<p>F&lt;字符&gt; - 从光标位置到光标左边某个字符首次出现的位置，包括该字符</p>
+<p>/正则表达式 - 从光标位置到下一个匹配正则表达式的位置（跨行）</p>
+<p>?正则表达式 - 从光标位置到上一个匹配正则表达式的位置（跨行）</p>
+<p>aw - 一个单词加一个空格 （a可理解为“一个”，下同）</p>
+<p>iw - 一个单词 （i可理解为in，下同）</p>
+<p>a” - 一个字符串包括双引号</p>
+<p>i” - 一个字符串内部文本</p>
+<p>a&lt; - 一组&lt; &gt;包含的文本，包括&lt; &gt;号本身</p>
+<p>同理类推：i&lt;, a[, i[, a(, i( </p>
+<p>注意：真正vim中的it范围（一对xml标签内部）在ideaVim中不生效。</p>
+<p>用/或?命令查找时，正则表达式默认大小写敏感，如果需要不敏感，可以在正则表达式开始处加上\c标志。</p>
+<p>例如 /\cabc 可以匹配到 ABC。下面提到的:s命令同样适用。</p>
+<p><strong>6、选择文本</strong></p>
+<p>在Vim中，选择文本需要进入“可视模式”（Visual Mode），这个名称比较奇怪，它的来由据说是因为在Vim的前身Vi中，选择区域是不可见的。</p>
+<p>在Vim中选择区域会高亮显示，因此称为“可视模式”。</p>
+<p>v - 进入字符选择模式， V - 进入行选择模式， Ctrl+v - 进入块选择模式。</p>
+<p>进入相应模式后移动光标即可选中文本。过程中可按o键令光标在选区两端切换。</p>
+<p>在块选择模式中选中多行，然后按I或A后输入文本，再退出插入模式，所输入的文本将自动加入到每一行的开头或结尾。</p>
+<p><strong>7、复制粘贴</strong></p>
+<p>在Vim模式下，复制粘贴并不直接使用系统的剪贴板，而是使用Vim提供的多个“寄存器”，每个寄存器都以一个字符来表示。</p>
+<p>关于寄存器的详细说明可以看这里 <a target="_blank" rel="noopener" href="http://blah.blogsome.com/2006/04/27/vim_tut_register/">http://blah.blogsome.com/2006/04/27/vim_tut_register/</a> ，这里简单列一些常用的操作技巧</p>
+<p>注意，vim使用双引号”来作为选择寄存器的命令，因此下文中的双引号均指在普通模式下按双引号键：</p>
+<p>a）用y命令将文本存入寄存器后，如果想在别处替换原有内容，可以先用v命令选中原有内容，然后用p命令粘贴。</p>
+<p>但第一次粘贴后，默认的寄存器”将被替换为刚刚删除的内容。如果要再次粘贴之前复制的内容，需要使用 “0p 命令组合来复制。</p>
+<p>也可以进入插入模式后用 Ctrl+r 0 来复制，例如 ciw&lt;Ctrl+r&gt;0 命令组合将用粘贴内容替换光标处的一个单词，并停留在插入模式。</p>
+<p>b）在Windows下，寄存器 + 和 * 都代表系统剪贴板，可以互换使用，选一个顺手的即可。</p>
+<p>例如 “+yy 命令组合可将当前行复制到系统剪贴板。ci”&lt;Ctrl+r&gt;* 命令组合则将系统剪贴板的内容替换字符串的内部文本。</p>
+<p>c) 寄存器1至9记录之前九次的删除大段文本，每次超过一行的删除操作都会导致这9个寄存器的内容发生位移，最近删除的文本会存入寄存器1。</p>
+<p>但只有删除超过1行时才会影响寄存器1至9，行内的删除内容则会被存入寄存器-（减号）。</p>
+<p>如果用q命令录制宏时不涉及跨行删除，可以在宏中直接使用这9个寄存器来暂存文本。</p>
+<p>（在Vim中，复制内容与录制宏共享同一套寄存器，因此我习惯把字母寄存器留给宏使用）</p>
+<p>d) 普通模式下小写p把寄存器内容复制到当前位置之后，大写P把寄存器内容复制到当前位置之前。</p>
+<p>e) 使用 :regs 命令可以列出当前所有寄存器的内容</p>
+<p><strong>8、一些插入模式下的常用快捷键</strong></p>
+<p>Ctrl+h - 删除光标左边字符</p>
+<p>Ctrl+w - 删除光标左边的单词</p>
+<p>Ctrl+y - 复制上方的一个字符</p>
+<p>Ctrl+e - 复制下方的一个字符</p>
+<p>Ctrl+r 0 - 插入前一次用y命令寄存的内容</p>
+<p>Ctrl+r * - 插入系统剪贴板的内容</p>
+<p>Ctrl+r &lt;寄存器名称&gt; - 插入指定寄存器的内容</p>
+<p>Ctrl+a - 插入前一次插入模式所键入的内容</p>
+<p>Ctrl+o - 执行一个普通模式下的命令然后返回插入模式。例如 Ctrl+o A 相当于按 End键， Ctrl+o I相当于按Home键</p>
+<p><strong>9、退出插入模式</strong></p>
+<p>退出插入模式可以用 ESC 键，但键位太远。其实也可以用 Ctrl+[ 键退出插入模式 。</p>
+<p>当然也可以用第1点自定义的Ctrl+;快捷键，但这不是标准vim按键，会养成不良习惯，不建议使用。</p>
+<p><strong>10、重复操作</strong></p>
+<p>普通模式下按. （小数点）可重复上一次的修改操作</p>
+<p>&amp; - 重复上一次的:s替换命令</p>
+<p>@@ - 重复上一次执行的宏</p>
+<p><strong>11、跳转</strong></p>
+<p>Ctrl+] 跳转到当前标识符的定义位置 （相当于在当前光标位置的单词上按住ctrl用鼠标点击）</p>
+<p>Ctrl+o 回退一步 (go back)</p>
+<p>Ctrl+i 前进一步 (go forward)</p>
+<p>`. 跳转到之前修改位置</p>
+<p>`` 在前一次跳转位置与当前位置间切换</p>
+<p>行号G 或 :行号&lt;回车&gt; 跳转到某一行</p>
+<p>gg 跳转到文件开头</p>
+<p>G 跳转到文件末尾</p>
+<p>H 跳转到屏幕顶端（如果设置了set so=n，则跳转到第n行）</p>
+<p>L 跳转到屏幕底端（如果设置了set so=n，则跳转到倒数第n行）</p>
+<p>M 跳转到屏幕中间</p>
+<p>f 或 F 跳转到本行某个字符，小写f向右查找，大写F向左查找。用;或,在匹配间切换</p>
+<p>t 或 T 跳转到本行某个字符之前，小写t向右查找，大写T向左查找。用;或,在匹配间切换</p>
+<p>/正则表达式 跳转到下一个匹配。用n或N在匹配间切换。</p>
+<p>?正则表达式 跳转到上一个匹配。用n或N在匹配间切换。</p>
+<p>结合前面第5点，你也许注意到了，在指定范围时，使用跳转命令将指定一个从光标位置到跳转目标的区域。</p>
+<p><strong>12、书签</strong></p>
+<p>在普通模式下按 m&lt;小写字母&gt; 即可定义书签，按 `&lt;字母&gt; 则可跳转到某个书签的精确位置，按 ‘&lt;字母&gt;可跳转到某个书签所在行的行首（用来录制宏时比较有用）。</p>
+<p>最常用的自然是mm, mn, mj, mk, ml这几个顺手的键位。</p>
+<p>真正的vim中的全局书签 m&lt;大写字母&gt; 在目前IdeaVim版本中不生效。需要定义全局书签可以使用Idea原本的 F11 + 数字 方式。</p>
+<p><strong>13 、文本替换</strong></p>
+<p>使用 :s/正则表达式/替换文本/ 可在本行内替换首次出现的匹配</p>
+<p>使用 :s/正则表达式/替换文本/g 在本行内替换所有出现的匹配</p>
+<p>使用 :%s/正则表达式/替换文本/g 在当前文件内替换所有出现的匹配</p>
+<p>在可视模式下选中文本后，使用:’&lt;,’&gt;s/正则表达式/替换文本/g 命令可在选中区域中替换文本。</p>
+<p>其中’&lt;,’&gt;部分在可视模式下，按:冒号后自动加入，直接输入s命令即可。但有效区域只能以行为单位。</p>
+<p>真正Vim中的 %V 标志在IdeaVim中不生效。</p>
+<p><strong>14、代码折叠</strong></p>
+<p>zo - 打开折叠</p>
+<p>zc - 关闭折叠</p>
+<p><strong>15 、宏定义</strong></p>
+<p>在IdeaVim中定义宏比Idea自带的宏功能要轻量许多。</p>
+<p>按在普通模式下 q&lt;寄存器名称&gt; 即可开始把后续按键序列录制到指定寄存器中（寄存器参考前面第7条）。录制完毕进入普通模式再按q键即可停止录制。</p>
+<p>之后用 @&lt;寄存器名称&gt; 即可重放。需要注意的是宏和复制粘贴共用一套寄存器，因此在录制宏时就注意不要把当前宏正在使用的寄存器用来复制了。</p>
+<p>寄存器内容是自动保存的，重启Idea仍然生效。但IdeaVim没有导出宏独立保存的功能。因此最好把用来保存宏的寄存器和用来复制粘贴的寄存器分开，不要同一个寄存器有时用来记录宏，有时用来复制粘贴。我的习惯是键盘左手区用来保存一些长期使用的宏（比如说我有一个宏专门用来把pom.xml中的版本号抽取到property区域，原来的位置则改用${property}引用）。</p>
+<p>右手区的hjklnm键用来保存一些临时宏。yuiop五个寄存器保留用来复制粘贴。如果录制的宏不涉及删除大段代码，寄存器1至9也可以用来进行复制粘贴。</p>
+<p>执行一次宏后，可以用@@命令重复上一次执行的宏。</p>
+<p>在Idea中录制宏时，如果触发了代码自动完成，在自动完成列表启动的状态输入的字符不会被记录。因此最好在Setting -&gt; Code Completion -&gt; Autopopup code completion中把延迟设为500ms以上或干脆关掉。在录制宏的过程中避免触发代码自动完成功能。</p>
+<p>录制一些长期有效的宏时，开始录制后，最好先用0，^，T, F, $等命令把光标对齐到行首行末或某个特定起始位置（比如说用 F” 跳转到字符串的左边引号），再用一个f或/指令跳转到操作位置，这样的宏就不用必须把光标放在某个特定字符才能使用了。</p>
+<p><strong>16、一些常用组合技</strong></p>
+<p>全选：ggvG</p>
+<p>调换两个字符位置：xp</p>
+<p>复制一行：yyp</p>
+<p>调换两行位置：ddp</p>
+<p>插入模式下到行尾继续输入（相当于End键）：Ctrl+o A 或 Ctrl+[ A</p>
+<p>插入模式下到行首继续输入（相当于Home键）：Ctrl+o I 或 Ctrl+[ I</p>
+<p>到类定义位置（适用于正确缩进的public，protected类） ：?^p回车</p>
+<p><strong>17、一些在目前版本已知没有实现的一些常用Vim功能</strong></p>
+<p>如果对Vim不熟悉可以跳过这节。</p>
+<p>a）let命令 （没有let命令就无法导出/导入寄存器内容，也就是无法导入宏）</p>
+<p>b）:g命令 （在文本处理中很有用的一个命令，在编程中倒是不那么常用）</p>
+<p>c）!命令 （执行shell命令）</p>
+<p>d）大部分正则表达式标记 （例如 %V， \v 等等） </p>
+<p>e) 某些多键命令双击最后一个字符表示作用于当前行。例如在Vim中gUU可以把当前行转换为大写，在IdeaVim中无效，实现同样功能可以先用V命令选中当前行，再用gU转换为大写。</p>
+<p>f）关于窗口操作的大部分命令 （Ctrl+w系列命令, :split等）</p>
+<p>g）所有Vim脚本插件 （不过大部分可以用Idea自身的功能和插件来补偿）</p>
+<p>嗯，差点忘了，在普通模式下按u撤销上一个修改（相当于其他IDE的Ctrl+z），按Ctrl+r重做被撤销的修改。</p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="silverlaw">
+  <p class="site-author-name" itemprop="name">silverlaw</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/%7C%7C%20archive">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/%7C%7C%20th">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/%7C%7C%20tags">
+          
+        
+        
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.flyl3una.cc/" title="https:&#x2F;&#x2F;www.flyl3una.cc&#x2F;" rel="noopener" target="_blank">L3una</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E5%AE%9E%E8%AF%9D%EF%BC%8CIntellij-IDEA%E8%87%AA%E5%B8%A6%E7%9A%84Vim%E6%8F%92%E4%BB%B6%E7%9C%9F%E5%BF%83%E4%B8%8D%E9%94%99%E2%80%A6"><span class="nav-number">1.</span> <span class="nav-text">说实话，Intellij IDEA自带的Vim插件真心不错…</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-silverlaw"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">silverlaw</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if ($('body').find('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', function() {
+    $('body').find('div.pdf').each(function(i, o) {
+      PDFObject.embed($(o).attr('target'), $(o), {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: $(o).attr('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
+    
+
+<script>
+NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'LDJ5wPvJaTFBCni4sAwuWyOQ-MdYXbMMI',
+    appKey: '3c6qY8BoRBwA5ly05Nm7OU0b',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
