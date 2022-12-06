@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.wuhui2356.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，本文主要对NPM的基本使用、依赖包的升级方法等进行简要的记录说明。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm常用命令">
+<meta property="og:url" content="https://blog.wuhui2356.top/2022/02/07/npm%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="wuhui2356&#39;s Blog">
+<meta property="og:description" content="NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，本文主要对NPM的基本使用、依赖包的升级方法等进行简要的记录说明。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-07T04:20:11.000Z">
+<meta property="article:modified_time" content="2022-12-04T13:54:40.141Z">
+<meta property="article:author" content="wuhui2356">
+<meta property="article:tag" content="npm">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.wuhui2356.top/2022/02/07/npm%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.wuhui2356.top/2022/02/07/npm%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/","path":"2022/02/07/npm常用命令/","title":"npm常用命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>npm常用命令 | wuhui2356's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="wuhui2356's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">wuhui2356's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%8C%85%E5%8D%87%E7%BA%A7"><span class="nav-number">3.</span> <span class="nav-text">依赖包升级</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wuhui2356"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wuhui2356</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:wuhui2356@foxmail.com" title="E-Mail → mailto:wuhui2356@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.wuhui2356.top/2022/02/07/npm%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wuhui2356">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wuhui2356's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          npm常用命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-07 12:20:11" itemprop="dateCreated datePublished" datetime="2022-02-07T12:20:11+08:00">2022-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-12-04 21:54:40" itemprop="dateModified" datetime="2022-12-04T21:54:40+08:00">2022-12-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/npm/" itemprop="url" rel="index"><span itemprop="name">npm</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，本文主要对NPM的基本使用、依赖包的升级方法等进行简要的记录说明。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p><code>NPM</code>是随同<code>NodeJS</code>一起安装的包管理工具，能解决<code>NodeJS</code>代码部署上的很多问题，本文主要对<code>NPM</code>的基本使用、依赖包的升级方法等进行简要的记录说明。</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><ul>
+<li>依赖包安装： <code>npm install xxx</code></li>
+<li>全局安装依赖包: <code>npm install -g xxxx</code></li>
+<li>查看缓存路径:   <code>npm config get cache</code></li>
+<li>修改缓存路径:  <code>npm config set cache /path/a/b</code></li>
+<li>查看依赖包是否已经过期: <code>npm outdated</code></li>
+<li>指定环境变量启动: <code>npx cross-env NODE_OPTIONS=&quot;--trace-warnings&quot; hexo s</code></li>
+</ul>
+<h1 id="依赖包升级"><a href="#依赖包升级" class="headerlink" title="依赖包升级"></a>依赖包升级</h1><ul>
+<li>安装工具：  <code>npm install -g npm-check-updates</code></li>
+<li>通过<code>ncu</code>工具再次检查是否有依赖包需要进行升级操作:  <code>ncu</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 这里的ncu为上文安装的npm-check-updates工具的简写</span><br><span class="line">$ ncu</span><br><span class="line"></span><br><span class="line">Checking F:\blog\package.json</span><br><span class="line">[====================] 24/24 100%</span><br><span class="line"></span><br><span class="line"> bufferutil            ^4.0.5  →   ^4.0.6</span><br><span class="line"> chokidar              ^3.5.2  →   ^3.5.3</span><br><span class="line"> hexo                  ^5.4.0  →   ^6.0.0</span><br><span class="line"> hexo-renderer-marked  ^4.1.0  →   ^5.0.0</span><br><span class="line"> hexo-server           ^2.0.0  →   ^3.0.0</span><br><span class="line"> hexo-theme-next       ^8.8.2  →   ^8.9.0</span><br><span class="line"> marked                ^4.0.6  →  ^4.0.12</span><br><span class="line"> utf-8-validate        ^5.0.7  →   ^5.0.8</span><br><span class="line"></span><br><span class="line">Run ncu -u to upgrade package.json</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更新<code>package.json</code>文件中的依赖包:   <code>ncu -u</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ ncu -u</span><br><span class="line">Upgrading F:\blog\package.json</span><br><span class="line">[====================] 24/24 100%</span><br><span class="line"></span><br><span class="line"> bufferutil            ^4.0.5  →   ^4.0.6</span><br><span class="line"> chokidar              ^3.5.2  →   ^3.5.3</span><br><span class="line"> hexo                  ^5.4.0  →   ^6.0.0</span><br><span class="line"> hexo-renderer-marked  ^4.1.0  →   ^5.0.0</span><br><span class="line"> hexo-server           ^2.0.0  →   ^3.0.0</span><br><span class="line"> hexo-theme-next       ^8.8.2  →   ^8.9.0</span><br><span class="line"> marked                ^4.0.6  →  ^4.0.12</span><br><span class="line"> utf-8-validate        ^5.0.7  →   ^5.0.8</span><br><span class="line"></span><br><span class="line">Run npm install to install new versions.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更新指定依赖包到<code>package.json</code>中：<code>ncu -u  包名</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ncu -u react-dev-inspector react-dom  react-helmet-async</span><br><span class="line">Upgrading D:\code\openbastion\src\web_ui\package.json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> react-dev-inspector   ^1.7.0  →   ^1.8.1</span><br><span class="line"> react-dom            ^17.0.0  →  ^18.2.0</span><br><span class="line"> react-helmet-async    ^1.2.0  →   ^1.3.0</span><br><span class="line"></span><br><span class="line">Run npm install to install new versions.</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>更新依赖包:   <code>npm install</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br><span class="line"></span><br><span class="line">added 7 packages, removed 3 packages, and changed 66 packages in 2m</span><br><span class="line"></span><br><span class="line">3 packages are looking for funding</span><br><span class="line">  run `npm fund` for details</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/npm/" rel="tag"># npm</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/07/linux%E4%B8%8B%E5%B8%B8%E7%94%A8%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux下常用调试方法命令">
+                  <i class="fa fa-chevron-left"></i> Linux下常用调试方法命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="wuhui2356"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wuhui2356</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wuhui2356","repo":"Blog","client_id":"c42a1c2088ec6900bccc","client_secret":"19a630a069a5d8866d525dab141a2a00562c8743","admin_user":"wuhui2356","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"b9597f9e101e8a16864bfba43de02e8f"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
